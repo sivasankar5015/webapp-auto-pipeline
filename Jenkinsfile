@@ -33,11 +33,20 @@ pipeline {
 		   }
 	   
 	   }
-	
-	
-	
-	
-	
+	   stage('deploy to production') {
+	       steps {
+		       deploy adapters: [tomcat8(credentialsId: '694ccb90-0113-4b44-8dc5-bc4638ee2502', path: '', url: 'http://localhost:8555/manager/html')], contextPath: null, war: '**/*.war'
+		   }
+		   post {
+		      success {
+			        echo 'deployment to production is successful'
+			  }
+			  failure {
+			        echo 'failed to deploy'
+			  }
+		   }
+	   
+	   }
 	
 	
 	
