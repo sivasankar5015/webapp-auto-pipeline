@@ -10,7 +10,7 @@ pipeline {
 	}
 	stage('copy atrifacts') {
 	  steps {
-	    copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'job1', selector: workspace()
+	    copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'job1', selector: lastSuccessful()
 	  }
 	}
 	stage('deploy to tomcat') {
